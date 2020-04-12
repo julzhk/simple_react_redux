@@ -8,16 +8,34 @@ const initialState = {
 
 //REDUCER
 const rootReducer = (state = initialState, action) => {
-    //minimal implementation
+    if(action.type==='INC_COUNTER'){
+        // must update state IMMUTABLY!
+        return {
+            ...state,
+            counter: state.counter + 1
+        }
+    }
+    if(action.type==='ADD_COUNTER'){
+        // must update state IMMUTABLY!
+        return {
+            ...state,
+            counter: state.counter + action.value
+        }
+    }
     return state
 }
 
 // STORE
 
 const store = createStore(rootReducer);
-console.log(store.getState())
-
+console.log(store.getState());
+//1
 
 // ACTION DISPATCHER
+store.dispatch({type: 'INC_COUNTER'});
+store.dispatch({type: 'ADD_COUNTER', value: 10});
+
+console.log(store.getState());
+// 11
 
 // SUBSCRIPTION
