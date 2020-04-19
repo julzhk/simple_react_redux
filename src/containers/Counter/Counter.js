@@ -6,9 +6,6 @@ import {connect} from "react-redux";
 
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
 
     render() {
         return (
