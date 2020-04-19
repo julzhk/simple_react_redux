@@ -2,20 +2,14 @@ const initialState = {
     counter: 0
 };
 const reducer = (state = initialState, action) => {
-
-    const delta = {
-        'INCREMENT': 1,
-        'DECREMENT': -1,
-        'ADD': 5,
-        'SUBTRACT': -5
-    }[action.type]
-    if (delta === undefined){
-        return state
+    console.log(action)
+    if (action.type === 'ADD') {
+        return {
+            ...state,
+            counter: state.counter + action.payload
+        }
     }
-    return {
-        ...state,
-        counter: state.counter + delta
-    }
+    return state
 };
 
 export default reducer;
