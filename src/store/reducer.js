@@ -25,7 +25,15 @@ const reducer = (state = initialState, action) => {
                     }
                 )
             }
-
+        case 'DELETE_RESULT':
+            //delete items from list immutably:
+            const updatedArray = state.results.filter(
+                (ele, indx) => (ele.id !== action.resultElementId)
+            )
+            return {
+                ...state,
+                results: updatedArray
+            }
     }
     return state
 };
