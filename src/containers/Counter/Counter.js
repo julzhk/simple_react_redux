@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import * as actionTypes from './../../store/actions'
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
@@ -43,12 +44,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onIncrementCounter: () => dispatch({type: 'ADD', payload: 1}),
-        onDecrementCounter: () => dispatch({type: 'ADD', payload: -1}),
-        onAddCounter: () => dispatch({type: 'ADD', payload: 10}),
-        onSubtractCounter: () => dispatch({type: 'ADD', payload: -10}),
-        onStoreResult: () => dispatch({type: 'STORE_RESULT'}),
-        onDeleteResult: (id) => dispatch({type: 'DELETE_RESULT', payload: null, resultElementId: id}),
+        onIncrementCounter: () => dispatch({type: actionTypes.ADD, payload: 1}),
+        onDecrementCounter: () => dispatch({type: actionTypes.ADD, payload: -1}),
+        onAddCounter: () => dispatch({type: actionTypes.ADD, payload: 10}),
+        onSubtractCounter: () => dispatch({type: actionTypes.ADD, payload: -10}),
+        onStoreResult: () => dispatch({type: actionTypes.STORE_RESULT}),
+        onDeleteResult: (id) => dispatch(
+            {
+                type: actionTypes.DELETE_RESULT,
+                payload: null,
+                resultElementId: id
+            }
+        ),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

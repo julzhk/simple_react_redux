@@ -1,3 +1,4 @@
+import * as actionTypes from './actions'
 const initialState = {
     counter: 0,
     results: []
@@ -6,13 +7,13 @@ const reducer = (state = initialState, action) => {
     console.log(action)
     console.log(state)
     switch (action.type) {
-        case 'ADD':
+        case actionTypes.ADD:
             //    respect immutability!
             return {
                 ...state,
                 counter: state.counter + action.payload
             }
-        case 'STORE_RESULT':
+        case actionTypes.STORE_RESULT:
             //    respect immutability!
             // use concat: like 'push' but returns a new list
             // not adds to current one
@@ -25,7 +26,7 @@ const reducer = (state = initialState, action) => {
                     }
                 )
             }
-        case 'DELETE_RESULT':
+        case actionTypes.DELETE_RESULT:
             //delete items from list immutably:
             const updatedArray = state.results.filter(
                 (ele, indx) => (ele.id !== action.resultElementId)
