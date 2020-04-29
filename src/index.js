@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {combineReducers, createStore, applyMiddleware} from "redux";
+import {combineReducers, createStore, applyMiddleware, compose} from "redux";
 import counterReducer from "./store/reducers/counter";
 import resultReducer from "./store/reducers/result";
 import {Provider} from "react-redux";
@@ -29,8 +29,9 @@ const logger = store => {
     }
 }
 
-// add 'enhancer(s)'
-const store = createStore(rootReducer, applyMiddleware(logger));
+// add 'enhancer(s) & dev tools - ie middleware'
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
 
 
 ReactDOM.render(<Provider store={store}><App/></Provider>,
